@@ -68,3 +68,15 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+
+
+<!-- ======== here is package use in the application =========== -->
+npm i react-router-dom ??? ============ only use for routing.
+npm i react-icons ??? ====== I am using for icons throw of this package.
+
+https://tailwindcss.com/docs/guides/create-react-app ?? this is url tailwind css. using for design
+
+npm i react-toastify ?? using for notification 
