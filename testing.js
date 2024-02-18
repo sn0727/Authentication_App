@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import { FaArrowRight } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { APIRequest, ApiUrl } from '../../utils/api'
 
 const Login = () => {
     const [inputValue, setInputValue] = useState({
@@ -25,29 +24,46 @@ const Login = () => {
     }
 
     const authencationFun = () => {
+
+        let data = JSON.stringify({
+            "email": "rizwan.sndigitech@gmail.com",
+            "password": "123456789"
+        });
+
         let config = {
-            url: ApiUrl?.login,
-            method: "post",
-            body: {
-                "email": inputValue.email,
-                "password": inputValue.password
-            }
-        }
-        APIRequest(
-            config,
-            res => {
-                if (!res?.error) {
-                    toast.success(res?.message)
-                    localStorage.setItem('data', JSON.stringify(res?.token))
-                    // naviagate('/packers-movers')
-                }
+            method: 'post',
+            maxBodyLength: Infinity,
+            url: 'https://dev.ebhuktan.com/api/admin/login',
+            headers: {
+                'Content-Type': 'application/json'
             },
-            err => {
-                if (err?.error) {
-                    toast.error(err?.message)
-                }
-            }
-        )
+            data: data
+        };
+
+        axios.request(config)
+            .then((response) => {
+                console.log(JSON.stringify(response.data));
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+
+
+        // axios({
+        //     method: 'post',
+        //     url: 'https://dev.ebhuktan.com/api/admin/login',
+        //     headers : {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     data : {
+        //         email : inputValue.email,
+        //         password : inputValue?.password
+        //     }
+        // }).then((response => {
+        //     console.log('my response', JSON.stringify(response.data))
+        // })).catch((error => {
+        //     console.log('error message', error)
+        // }))
     }
 
     const formSubmitHandler = () => {
